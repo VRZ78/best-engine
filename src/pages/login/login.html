@@ -5,8 +5,8 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-row>
-    <ion-card col-12 col-sm>
+  <ion-row justify-content-center>
+    <ion-card col-7>
       <ion-card-header>
         Connexion
       </ion-card-header>
@@ -21,37 +21,6 @@
         </ion-item>
         <div padding>
           <button ion-button (click)="login()" color="primary" block>Se connecter</button>
-        </div>
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card col-12 col-sm>
-      <ion-card-header>
-        Inscription
-      </ion-card-header>
-      <ion-card-content>
-        <ion-item>
-          <ion-label floating>Username</ion-label>
-          <ion-input [(ngModel)]="registerUser.username" type="text"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Password</ion-label>
-          <ion-input [(ngModel)]="registerUser.password" type="password"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Email</ion-label>
-          <ion-input [(ngModel)]="registerUser.mail"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Nom</ion-label>
-          <ion-input [(ngModel)]="registerUser.lastName"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Prénom</ion-label>
-          <ion-input [(ngModel)]="registerUser.firstName"></ion-input>
-        </ion-item>
-        <div padding>
-          <button ion-button (click)="register()" color="primary" block>S'enregistrer</button>
         </div>
       </ion-card-content>
     </ion-card>

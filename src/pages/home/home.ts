@@ -8,16 +8,35 @@ import  {UserService } from '../../shared/service/user.service';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers:[]
+  providers:[FileTransfer]
 })
 export class HomePage implements OnInit{
 
   orders : Order[];
 
-  constructor(public navCtrl: NavController,public toastCtrl: ToastController, private APIService : APIService,private userService :UserService) {
+  constructor(public navCtrl: NavController,public toastCtrl: ToastController, private APIService : APIService,private userService :UserService,private transfer: FileTransfer) {
 
   }
 
+  fileTransfer: FileTransferObject = this.transfer.create();
+
+  //fileTransfer.upload(..).then(..).catch(..);
+  // full example
+upload() {
+  /*let options: FileUploadOptions = {
+     fileKey: 'file',
+     fileName: 'name.jpg',
+     headers: {}
+     .....
+  }*/
+
+  /*this.fileTransfer.upload('<file path>', '<api endpoint>')
+   .then((data) => {
+     // success
+   }, (err) => {
+     // error
+   })*/
+}
   ngOnInit(): void {
 
     this.APIService.getOrders(this.userService.user.id).then((orders:[Order]) => {
@@ -29,6 +48,9 @@ export class HomePage implements OnInit{
       });
       toast.present();
     });
+  }
+  orderDetails(){
+    this.navCtrl.push('OrderDetailsPage');
   }
 
 }

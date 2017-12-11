@@ -10,6 +10,7 @@ import {User} from "../models/User.model";
 export class APIService {
 
   uri = "http://localhost:5000/";
+  token : String;
 
   constructor(private http: HttpClient) {
   };
@@ -18,6 +19,7 @@ export class APIService {
   connect = function (username, password) {
     return new Promise((resolve, reject) => {
       this.http.post(this.uri + "user/connection", {username : username, password : password}).subscribe((data) => {
+        this.token = data.token;
         resolve(data);
       }, (err) => {
         reject(err);
@@ -38,7 +40,21 @@ export class APIService {
         reject(err);
       })
     });
+  }
 
+  /**
+   * Return the order for a user ID
+   * @param {String} userId
+   * @returns {Promise<any>}
+   */
+  getOrders = function(userId : String) {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.uri + "order",{headers: {Authorization : this.token}}).subscribe((data) => {
+        resolve(data);
+      }, (err) => {
+        reject(err);
+      })
+    });
   }
 
 }

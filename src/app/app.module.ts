@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import {LoginPage} from "../pages/login/login";
 import {APIService} from "../shared/service/APIService.service";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {UserService} from "../shared/service/user.service";
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
   providers: [
     StatusBar,
     SplashScreen,
+    UserService,
     APIService,
     HttpClient,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

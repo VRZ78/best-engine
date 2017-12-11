@@ -6,12 +6,14 @@ import {HomePage} from "../home/home";
 import {UserService} from "../../shared/service/user.service";
 
 @Component({
-  templateUrl: 'login.html'
+  templateUrl: 'login.html',
+  providers:[]
 })
+
 export class LoginPage implements OnInit{
 
   user: User;
-
+  test : any;
   constructor(private APISerive : APIService, public navCtrl: NavController, public toastCtrl: ToastController, private userService : UserService) {
 
   }
@@ -21,8 +23,10 @@ export class LoginPage implements OnInit{
   }
 
   login = function () {
-    this.APISerive.connect(this.user.username, this.user.password).then((data) => {
+    this.APISerive.connect(this.user.username, this.user.password).then((data:any) => {
       this.userService.user = data;
+      this.test = data;
+      console.log(this.test);
       this.navCtrl.push(HomePage);
     }, (err) => {
       let toast = this.toastCtrl.create({

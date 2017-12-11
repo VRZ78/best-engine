@@ -9,7 +9,7 @@ import {User} from "../models/User.model";
 
 export class APIService {
 
-  uri = "http://localhost:5000/";
+  uri = "http://192.168.43.136:5000/";
   token : String;
 
   constructor(private http: HttpClient) {
@@ -49,7 +49,7 @@ export class APIService {
    */
   getOrders = function(userId : String) {
     return new Promise((resolve, reject) => {
-      this.http.get(this.uri + "order",{headers: {Authorization : this.token}}).subscribe((data) => {
+      this.http.get(this.uri + "order?userId=" + userId).subscribe((data) => {
         resolve(data);
       }, (err) => {
         reject(err);

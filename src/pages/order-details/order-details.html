@@ -14,9 +14,28 @@
 
 
 <ion-content padding>
-  <p>{{order}}</p>
- 
-  <p>{{order.status}}</p>
-  <p>{{order.date}}</p>
-  <p>{{order.userId}}</p>
+  <ion-row justify-content-center>
+    <ion-card col-7>
+      <ion-card-header>
+        <b>Order {{order?._id}}</b>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Status : {{order?.status}}</p>
+        <p>Date : {{order?.date}}</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-row>
+
+  <ion-row justify-content-center>
+    <ion-card col-7>
+      <ion-card-header>
+        <b>Order Content : </b>
+      </ion-card-header>
+      <ion-card-content>
+        <div *ngFor="let product of order.products">
+        <p >{{product}}</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-row>
 </ion-content>

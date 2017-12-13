@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {User} from "../models/User.model";
+import {User} from "../models/user/user.model";
 /**
  * Created by vroub on 07/12/2017.
  */
@@ -9,7 +9,7 @@ import {User} from "../models/User.model";
 
 export class APIService {
 
-  uri = "http://192.168.43.136:5000/";
+  uri = "http://localhost:5000/";
   token : String;
 
   constructor(private http: HttpClient) {
@@ -50,6 +50,21 @@ export class APIService {
   getOrders = function(userId : String) {
     return new Promise((resolve, reject) => {
       this.http.get(this.uri + "order?userId=" +   userId).subscribe((data) => {
+        resolve(data);
+      }, (err) => {
+        reject(err);
+      })
+    });
+  }
+
+  /**
+   * Create an order from the diagnostic file
+   * @param {String} userId
+   * @param {any[]} order
+   */
+  createOrder = function (userId: String, order: any[]) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.uri + "order?userId=" +   userId, order).subscribe((data) => {
         resolve(data);
       }, (err) => {
         reject(err);

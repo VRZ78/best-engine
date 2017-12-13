@@ -13,44 +13,54 @@ import  {UserService } from '../../shared/service/user.service';
 export class HomePage implements OnInit{
 
   orders : Order[];
+  files : FileList;
+  toSend : any[];
 
-  constructor(public navCtrl: NavController,public toastCtrl: ToastController, private APIService : APIService,private userService :UserService,private transfer: FileTransfer) {
+  constructor(public navCtrl: NavController,public toastCtrl: ToastController, private APIService : APIService,private userService :UserService) {
 
   }
 
-  fileTransfer: FileTransferObject = this.transfer.create();
 
-  //fileTransfer.upload(..).then(..).catch(..);
-  // full example
-upload() {
-  /*let options: FileUploadOptions = {
-     fileKey: 'file',
-     fileName: 'name.jpg',
-     headers: {}
-     .....
-  }*/
 
-  /*this.fileTransfer.upload('<file path>', '<api endpoint>')
-   .then((data) => {
-     // success
-   }, (err) => {
-     // error
-   })*/
-}
   ngOnInit(): void {
 
     this.APIService.getOrders(this.userService.user.id).then((orders:[Order]) => {
       this.orders = orders;
     }, (err) => {
       let toast = this.toastCtrl.create({
-        message: 'Utilisateur inconnu',
+        message: 'Impossible de charger les commandes',
         duration: 3000
       });
       toast.present();
     });
   }
+
   orderDetails(order){
     this.navCtrl.push('OrderDetailsPage',{order:order});
   }
+
+  onFileSelected($event) {
+    let eventObj: MSInputMethodContext = <MSInputMethodContext> $event;
+    let target: HTMLInputElement = <HTMLInputElement> eventObj.target;
+    let files: FileList = target.files;
+    let reader = new FileReader();
+    reader.onload = this._handleReaderLoaded.bind(this);
+    reader.readAsBinaryString(files[0]);
+  }
+
+  _handleReaderLoaded(readerEvt) {
+    let binaryString = readerEvt.target.result;
+    this.toSend = JSON.parse(binaryString)
+    this.APIService.createOrder(this.userService.user.id, this.toSend).then((order:Order) => {
+      this.orders.push(order);
+    }, (err) => {
+      let toast = this.toastCtrl.create({
+        message: 'Impossible de créer la commande',
+        duration: 3000
+      });
+      toast.present();
+    });
+  }
+
 
 }

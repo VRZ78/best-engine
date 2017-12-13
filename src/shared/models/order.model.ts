@@ -11,7 +11,7 @@ export class Order {
 
   constructor(data) {
     if (data) {
-      this.id = data.id;
+      this.id = data._id;
       this.products = data.products;
       this.status = data.status;
       this.date = data.date;

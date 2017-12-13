@@ -1,0 +1,38 @@
+[
+	{
+		"name" : "Fan",
+		"works" : false
+	},
+	{
+		"name" : "High-pressure compressor",
+		"works" : true
+	},
+	{
+		"name" : "High-pressure shaft",
+		"works" : true
+	},
+	{
+		"name" : "High-pressure turbine",
+		"works" : false
+	},
+	{
+		"name" : "Low-pressure compressor",
+		"works" : true
+	},
+	{
+		"name" : "Low-pressure turbine",
+		"works" : true
+	},
+	{
+		"name" : "Nozzle",
+		"works" : true
+	},
+	{
+		"name" : "Low-pressure shaft",
+		"works" : false
+	},
+	{
+		"name" : "Combustion Chamber",
+		"works" : false
+	}
+]

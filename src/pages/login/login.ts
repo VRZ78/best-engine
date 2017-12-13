@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController, ToastController} from "ionic-angular";
-import {User} from "../../shared/models/user.model";
+import {User} from "../../shared/models/user/user.model";
 import {APIService} from "../../shared/service/APIService.service";
 import {HomePage} from "../home/home";
 import {UserService} from "../../shared/service/user.service";

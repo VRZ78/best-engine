@@ -14,8 +14,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'order-details.html',
 })
 export class OrderDetailsPage {
-
+	order :any;
+	products:any[];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+  	this.order=this.navParams.get('order');
+  	console.log('order : '+this.navParams.get('order'));
+
   }
 
   ionViewDidLoad() {

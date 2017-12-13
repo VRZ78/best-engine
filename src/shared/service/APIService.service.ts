@@ -49,12 +49,13 @@ export class APIService {
    */
   getOrders = function(userId : String) {
     return new Promise((resolve, reject) => {
-      this.http.get(this.uri + "order?userId=" + userId).subscribe((data) => {
+      this.http.get(this.uri + "order?userId=" +   userId).subscribe((data) => {
         resolve(data);
       }, (err) => {
         reject(err);
       })
     });
   }
+
 
 }

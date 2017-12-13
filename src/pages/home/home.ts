@@ -49,8 +49,8 @@ upload() {
       toast.present();
     });
   }
-  orderDetails(){
-    this.navCtrl.push('OrderDetailsPage');
+  orderDetails(order){
+    this.navCtrl.push('OrderDetailsPage',{order:order});
   }
 
 }

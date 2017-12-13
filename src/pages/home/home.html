@@ -3,9 +3,9 @@
     <ion-title>
       My Orders
     </ion-title>
-    <ion-buttons end>
-      <ion-item>
-        <label class="item item-input"> <input type="file" name="uploadfile" (change)="onFileSelected($event)">
+    <ion-buttons color ="primary" style="margin:0px" end>
+      <ion-item class = "itemIon" color ="primary" style="border-bottom:0px !important">
+        <label color ="primary" > <input  type="file" name="uploadfile" (change)="onFileSelected($event)">
         </label>
       </ion-item>
     </ion-buttons>
@@ -18,71 +18,34 @@
     <ion-list-header color="primary">
       Orders List
     </ion-list-header>
-    <button ion-item *ngFor="let order of orders" (click)="orderDetails(order)">
+	<div *ngFor="let order of orders">
+    <button ion-item *ngIf ="order.status != 'Completed' " (click)="orderDetails(order)">
       <ion-avatar item-start>
-        <img src="http://via.placeholder.com/350x150">
+        <img src="../assets/imgs/circle-yellow.png">
       </ion-avatar>
       <h2>{{order.status}}</h2>
       <h3>{{order.date}}</h3>
       <p>{{order._id}}</p>
     </button>
+	</div>
+  </ion-list>
+	
+  <ion-list class = "ion-list-italic">	
     <ion-list-header color="danger">
-      Previous Orders
+	Previous Orders 
     </ion-list-header>
-    <button ion-item>
+	<div *ngFor="let order of orders">
+	<button ion-item  *ngIf ="order.status === 'Completed' " (click)="orderDetails(order)">
       <ion-avatar item-start>
-        <img src="http://via.placeholder.com/350x150">
+        <img src="../assets/imgs/button-green.png">
       </ion-avatar>
-      <h2>Roubaix</h2>
-      <h3>Don't Know What To Do!</h3>
-      <p>I've had a pretty messed up day. If we just...</p>
+      <h2>{{order.status}}</h2>
+      <h3>{{order.date}}</h3>
+      <p>{{order._id}}</p>
     </button>
-
-    <button ion-item>
-      <ion-avatar item-start>
-        <img src="http://via.placeholder.com/350x150">
-      </ion-avatar>
-      <h2>Nemours</h2>
-      <h3>Don't Know What To Do!</h3>
-      <p>I've had a pretty messed up day. If we just...</p>
-    </button>
-
-    <button ion-item>
-      <ion-avatar item-start>
-        <img src="http://via.placeholder.com/350x150">
-      </ion-avatar>
-      <h2>Casa</h2>
-      <h3>Don't Know What To Do!</h3>
-      <p>I've had a pretty messed up day. If we just...</p>
-    </button>
-
-    <button ion-item>
-      <ion-avatar item-start>
-        <img src="http://via.placeholder.com/350x150">
-      </ion-avatar>
-      <h2>Bagneux</h2>
-      <h3>Don't Know What To Do!</h3>
-      <p>I've had a pretty messed up day. If we just...</p>
-    </button>
-
-    <button ion-item>
-      <ion-avatar item-start>
-        <img src="http://via.placeholder.com/350x150">
-      </ion-avatar>
-      <h2>Auber</h2>
-      <h3>Don't Know What To Do!</h3>
-      <p>I've had a pretty messed up day. If we just...</p>
-    </button>
-
-    <button ion-item>
-      <ion-avatar item-start>
-        <img src="http://via.placeholder.com/350x150">
-      </ion-avatar>
-      <h2>Mantes</h2>
-      <h3>Don't Know What To Do!</h3>
-      <p>I've had a pretty messed up day. If we just...</p>
-    </button>
+	</div>
 
 
   </ion-list>
+  
 </ion-content>

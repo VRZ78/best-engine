@@ -9,7 +9,7 @@ import {User} from "../models/user/user.model";
 
 export class APIService {
 
-  uri = "http://localhost:5000/";
+  uri = "http://192.168.43.136:5000/";
   token : String;
 
   constructor(private http: HttpClient) {

@@ -11,13 +11,15 @@ import {APIService} from "../shared/service/APIService.service";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {UserService} from "../shared/service/user.service";
 import {CreateAccountPage} from "../pages/create-account/create-account";
+import {OrderDetailsPage} from "../pages/order-details/order-details";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     LoginPage,
-    CreateAccountPage
+    CreateAccountPage,
+    OrderDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import {CreateAccountPage} from "../pages/create-account/create-account";
     MyApp,
     HomePage,
     LoginPage,
-    CreateAccountPage
+    CreateAccountPage,
+    OrderDetailsPage
   ],
   providers: [
     StatusBar,

@@ -6,6 +6,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import  {UserService } from '../../shared/service/user.service';
 import {User} from "../../shared/models/user/user.model";
 import {CreateAccountPage} from "../create-account/create-account";
+import {OrderDetailsPage} from "../order-details/order-details";
 
 @Component({
   selector: 'page-home',
@@ -39,7 +40,7 @@ export class HomePage implements OnInit{
   }
 
   orderDetails(order){
-    this.navCtrl.push('OrderDetailsPage',{order:order});
+    this.navCtrl.push(OrderDetailsPage,{order:order});
   }
 
   onFileSelected($event) {

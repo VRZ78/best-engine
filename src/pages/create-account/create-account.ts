@@ -4,14 +4,14 @@ import {User} from "../../shared/models/user/user.model";
 import {APIService} from "../../shared/service/APIService.service";
 import {HomePage} from "../home/home";
 import {UserService} from "../../shared/service/user.service";
-import {CreateAccountPage} from "../create-account/create-account";
+import {LoginPage} from "../login/login";
 
 @Component({
-  templateUrl: 'login.html',
+  templateUrl: 'create-account.html',
   providers:[]
 })
 
-export class LoginPage implements OnInit{
+export class CreateAccountPage implements OnInit{
 
   user: User;
   test : any;
@@ -23,21 +23,20 @@ export class LoginPage implements OnInit{
     this.user = new User({});
   }
 
-  login = function () {
-    this.APISerive.connect(this.user.username, this.user.password).then((data:any) => {
+  create = function () {
+    this.APISerive.register(this.user).then((data:any) => {
       this.userService.user = data;
       this.test = data;
       console.log(this.test);
-      this.navCtrl.push(HomePage);
+      this.navCtrl.pop();
     }, (err) => {
       let toast = this.toastCtrl.create({
-        message: 'Utilisateur inconnu',
+        message: 'Impossible de créer le compte',
         duration: 3000
       });
       toast.present();
     })
   };
-
 
 
 }

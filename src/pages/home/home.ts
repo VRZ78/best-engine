@@ -4,6 +4,8 @@ import {APIService} from "../../shared/service/APIService.service";
 import {Order} from "../../shared/models/order.model";
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import  {UserService } from '../../shared/service/user.service';
+import {User} from "../../shared/models/user/user.model";
+import {CreateAccountPage} from "../create-account/create-account";
 
 @Component({
   selector: 'page-home',
@@ -15,9 +17,10 @@ export class HomePage implements OnInit{
   orders : Order[];
   files : FileList;
   toSend : any[];
+  currentUser : User;
 
   constructor(public navCtrl: NavController,public toastCtrl: ToastController, private APIService : APIService,private userService :UserService) {
-
+      this.currentUser = this.userService.user;
   }
 
 
@@ -62,5 +65,8 @@ export class HomePage implements OnInit{
     });
   }
 
+  createAccount = function () {
+    this.navCtrl.push(CreateAccountPage);
+  }
 
 }

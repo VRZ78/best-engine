@@ -8,6 +8,7 @@ export class Order {
   status: String;
   date : String;
   userId : String;
+  isGarage : Boolean;
 
   constructor(data) {
     if (data) {
@@ -16,6 +17,7 @@ export class Order {
       this.status = data.status;
       this.date = data.date;
       this.userId = data.userId
+      this.isGarage = data.isGarage;
     }
   }
 }

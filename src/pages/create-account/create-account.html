@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Welcome</ion-title>
+    <ion-title>Create Account</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -8,12 +8,9 @@
   <ion-row justify-content-center>
     <ion-card col-7>
       <ion-card-header>
-        <b>Connection</b>
+        <b>Create an account for an air club</b>
       </ion-card-header>
       <ion-card-content>
-        <ion-row no-padding justify-content-center>
-          <ion-img width="300" height="300" src="../assets/imgs/BE_Logo.png"></ion-img>
-        </ion-row>
         <ion-item>
           <ion-label floating>Username</ion-label>
           <ion-input [(ngModel)]="user.username" type="text"></ion-input>
@@ -22,12 +19,18 @@
           <ion-label floating>Password</ion-label>
           <ion-input [(ngModel)]="user.password" type="password"></ion-input>
         </ion-item>
+        <ion-item>
+          <ion-label floating>First name</ion-label>
+          <ion-input [(ngModel)]="user.firstName" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Last Name</ion-label>
+          <ion-input [(ngModel)]="user.lastName" type="text"></ion-input>
+        </ion-item>
         <div padding>
-          <button ion-button (click)="login()" color="primary" block>Log in</button>
+          <button ion-button (click)="create()" color="primary" block>Create Account</button>
         </div>
       </ion-card-content>
     </ion-card>
   </ion-row>
 </ion-content>
-
-

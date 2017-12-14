@@ -10,12 +10,14 @@ import {LoginPage} from "../pages/login/login";
 import {APIService} from "../shared/service/APIService.service";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {UserService} from "../shared/service/user.service";
+import {CreateAccountPage} from "../pages/create-account/create-account";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    CreateAccountPage
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import {UserService} from "../shared/service/user.service";
   entryComponents: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    CreateAccountPage
   ],
   providers: [
     StatusBar,

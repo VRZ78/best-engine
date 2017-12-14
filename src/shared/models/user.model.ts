@@ -8,6 +8,7 @@ export class User {
   password: string;
   firstName: string;
   lastName: string;
+  isGarage : boolean;
 
   constructor(data) {
     if (data) {
@@ -15,7 +16,8 @@ export class User {
       this.username = data.username;
       this.firstName = data.firstName;
       this.lastName = data.lastName
+      this.isGarage = data.isGarage;
     }
-	
+
   }
 }

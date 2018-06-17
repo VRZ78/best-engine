@@ -20,14 +20,12 @@ export class CreateAccountPage implements OnInit{
   }
 
   ngOnInit(): void {
-    this.user = new User({});
+    this.user = new User({type : "airclub"});
   }
 
-  create = function () {
+  create  () {
     this.APISerive.register(this.user).then((data:any) => {
       this.userService.user = data;
-      this.test = data;
-      console.log(this.test);
       this.navCtrl.pop();
     }, (err) => {
       let toast = this.toastCtrl.create({

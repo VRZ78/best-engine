@@ -8,10 +8,11 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import {LoginPage} from "../pages/login/login";
 import {APIService} from "../shared/service/APIService.service";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import {UserService} from "../shared/service/user.service";
 import {CreateAccountPage} from "../pages/create-account/create-account";
 import {OrderDetailsPage} from "../pages/order-details/order-details";
+import {AuthInterceptorService} from "../shared/service/auth-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -40,6 +41,11 @@ import {OrderDetailsPage} from "../pages/order-details/order-details";
     UserService,
     APIService,
     HttpClient,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

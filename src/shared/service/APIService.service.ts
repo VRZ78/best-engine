@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {User} from "../models/user/user.model";
+import {Part} from "../models/part.model";
 /**
  * Created by vroub on 07/12/2017.
  */
@@ -10,16 +11,18 @@ import {User} from "../models/user/user.model";
 export class APIService {
 
   uri = "http://localhost:5000/";
+  currentUser : User;
   token : String;
 
   constructor(private http: HttpClient) {
   };
 
 
-  connect = function (username, password) {
+  connect (username, password) {
     return new Promise((resolve, reject) => {
-      this.http.post(this.uri + "user/connection", {username : username, password : password}).subscribe((data) => {
+      this.http.post(this.uri + "user/connection", {username : username, password : password}).subscribe((data : any) => {
         this.token = data.token;
+        this.currentUser = new User(data)
         resolve(data);
       }, (err) => {
         reject(err);
@@ -62,9 +65,9 @@ export class APIService {
    * @param {String} userId
    * @param {any[]} order
    */
-  createOrder = function (userId: String, order: any[]) {
+  createOrder (userId: String, order: any[]) {
     return new Promise((resolve, reject) => {
-      this.http.post(this.uri + "order?userId=" +   userId, order).subscribe((data) => {
+      this.http.post(this.uri + "order", order).subscribe((data) => {
         resolve(data);
       }, (err) => {
         reject(err);
@@ -72,5 +75,27 @@ export class APIService {
     });
   }
 
+  changeOrderStatus (orderId: String, status: String) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.uri + "order/" + orderId + "/status", status).subscribe((data) => {
+        resolve(data);
+      }, (err) => {
+        reject(err);
+      })
+    });
+  }
+
+  getCertificatesForOrder (order: any[]) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.uri + "order/certificates", order).subscribe((data : Array<any>) => {
+        for(let part of data) {
+          part = new Part(part)
+        }
+        resolve(data);
+      }, (err) => {
+        reject(err);
+      })
+    });
+  }
 
 }

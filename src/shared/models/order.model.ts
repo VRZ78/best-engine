@@ -4,11 +4,12 @@
 export class Order {
 
   id : String;
-  products : [String];
+  products : [String]; // Could be changed to a part array...
   status: String;
   date : String;
   userId : String;
   isGarage : Boolean;
+  productsToManufacture : [String];
 
   constructor(data) {
     if (data) {
@@ -18,6 +19,7 @@ export class Order {
       this.date = data.date;
       this.userId = data.userId
       this.isGarage = data.isGarage;
+      this.productsToManufacture = data.productsToManufacture;
     }
   }
 }

@@ -3,52 +3,53 @@
     <ion-title>
       My Orders
     </ion-title>
-    <ion-buttons *ngIf="currentUser.isGarage" color ="primary" style="margin:0px" end>
-      <ion-item class = "itemIon" color ="primary" style="border-bottom:0px !important">
-        <label color ="primary" > <input  type="file" name="uploadfile" (change)="onFileSelected($event)">
+    <ion-buttons *ngIf="currentUser.type === 'garage'" color="primary" style="margin:0px" end>
+      <ion-item class="itemIon" color="primary" style="border-bottom:0px !important">
+        <label color="primary"> <input type="file" name="uploadfile" (change)="onFileSelected($event)">
         </label>
       </ion-item>
     </ion-buttons>
-    <ion-buttons *ngIf="currentUser.isGarage" color ="primary" style="margin:0px" end>
-      <ion-item class = "itemIon" color ="primary" (click)="createAccount()"  style="border-bottom:0px !important">
+    <ion-buttons *ngIf="currentUser.type === 'garage'" style="margin:0px" end>
+      <button ion-button icon-only class="itemIon" color="light" (click)="createAccount()"
+              style="border-bottom:0px !important">
         <ion-icon name="person-add"></ion-icon>
-      </ion-item>
+      </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content no-padding>
-  <h2 style="text-align: center;">Best Engine</h2>
+  <h2 style="text-align: center;">Best Engine - {{currentUser.type}} {{currentUser.role ? '- '.concat(currentUser.role) : ''}}</h2>
   <ion-list>
     <ion-list-header color="primary">
       Orders List
     </ion-list-header>
-	<div *ngFor="let order of orders">
-    <button ion-item *ngIf ="order.status != 'Completed' " (click)="orderDetails(order)">
-      <ion-avatar item-start>
-        <img src="../assets/imgs/circle-yellow.png">
-      </ion-avatar>
-      <h2>{{order.status}}</h2>
-      <h3>{{order.date}}</h3>
-      <p>{{order._id}}</p>
-    </button>
-	</div>
+    <div *ngFor="let order of orders">
+      <button ion-item *ngIf="order.status != 'Completed' " (click)="orderDetails(order)">
+        <ion-avatar item-start>
+          <img src="../assets/imgs/circle-yellow.png">
+        </ion-avatar>
+        <h2>{{order.status}}</h2>
+        <h3>{{order.date}}</h3>
+        <p>{{order._id}}</p>
+      </button>
+    </div>
   </ion-list>
 
-  <ion-list class = "ion-list-italic">
+  <ion-list class="ion-list-italic">
     <ion-list-header color="danger">
-	Previous Orders
+      Previous Orders
     </ion-list-header>
-	<div *ngFor="let order of orders">
-	<button ion-item  *ngIf ="order.status === 'Completed' " (click)="orderDetails(order)">
-      <ion-avatar item-start>
-        <img src="../assets/imgs/button-green.png">
-      </ion-avatar>
-      <h2>{{order.status}}</h2>
-      <h3>{{order.date}}</h3>
-      <p>{{order._id}}</p>
-    </button>
-	</div>
+    <div *ngFor="let order of orders">
+      <button ion-item *ngIf="order.status === 'Completed' " (click)="orderDetails(order)">
+        <ion-avatar item-start>
+          <img src="../assets/imgs/button-green.png">
+        </ion-avatar>
+        <h2>{{order.status}}</h2>
+        <h3>{{order.date}}</h3>
+        <p>{{order._id}}</p>
+      </button>
+    </div>
 
 
   </ion-list>

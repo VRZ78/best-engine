@@ -33,9 +33,30 @@
       </ion-card-header>
       <ion-card-content *ngIf="order">
         <div *ngFor="let product of order.products">
+          <p >{{product}}</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-row>
+
+  <ion-row *ngIf="order.productsToManufacture && order.productsToManufacture.length > 0" justify-content-center>
+    <ion-card col-7>
+      <ion-card-header>
+        <b>Parts being manufactured : </b>
+      </ion-card-header>
+      <ion-card-content>
+        <div *ngFor="let product of order.productsToManufacture">
         <p >{{product}}</p>
         </div>
       </ion-card-content>
     </ion-card>
   </ion-row>
+
+  <ion-row justify-content-center>
+    <button (click)="changeOrderStatus('Ready for shipping')" *ngIf="currentUser.role === 'warehouse'" ion-button>Mark as manufactured</button>
+    <button (click)="changeOrderStatus('In transit')" *ngIf="currentUser.role === 'shipping' && order.status === 'Ready for shipping'" ion-button>Mark as in transit</button>
+    <button (click)="changeOrderStatus('Shipped')" *ngIf="currentUser.role === 'shipping' && order.status === 'In transit'" ion-button>Mark as shipped</button>
+    <button (click)="changeOrderStatus('Completed')" *ngIf="currentUser.type === 'Shipping Company' && order.status === 'Shipped'" ion-button>Mark as completed</button>
+  </ion-row>
+
 </ion-content>
